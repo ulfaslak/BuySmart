@@ -14,6 +14,8 @@
 		061B1B671ADEA7820060165B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 061B1B661ADEA7820060165B /* Images.xcassets */; };
 		061B1B6A1ADEA7820060165B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 061B1B681ADEA7820060165B /* LaunchScreen.xib */; };
 		061B1B761ADEA7820060165B /* BuySmartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B1B751ADEA7820060165B /* BuySmartTests.swift */; };
+		065AF1021ADEB4FD0067F829 /* StoreOffersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */; };
+		065AF1041ADEB51C0067F829 /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */; };
 		9B980C08D42FDD3BE8847F57 /* libPods-BuySmart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB573F727993CE79ACF174E2 /* libPods-BuySmart.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		061B1B6F1ADEA7820060165B /* BuySmartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuySmartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		061B1B741ADEA7820060165B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		061B1B751ADEA7820060165B /* BuySmartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySmartTests.swift; sourceTree = "<group>"; };
+		065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreOffersTableViewController.swift; sourceTree = "<group>"; };
+		065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
 		4839E7BF51CD6D9F1BE4B709 /* Pods-BuySmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.release.xcconfig"; sourceTree = "<group>"; };
 		A5E550D01CE8E5C23AAB5C4A /* Pods-BuySmart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.debug.xcconfig"; sourceTree = "<group>"; };
 		AF18AD881ADEAF28007D5B8A /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				061B1B5C1ADEA7820060165B /* AppDelegate.swift */,
 				AF18AD881ADEAF28007D5B8A /* Header.h */,
 				061B1B611ADEA7820060165B /* ViewController.swift */,
+				065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */,
+				065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */,
 				061B1B631ADEA7820060165B /* Main.storyboard */,
 				061B1B661ADEA7820060165B /* Images.xcassets */,
 				061B1B681ADEA7820060165B /* LaunchScreen.xib */,
@@ -276,6 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				065AF1041ADEB51C0067F829 /* ShoppingListTableViewController.swift in Sources */,
+				065AF1021ADEB4FD0067F829 /* StoreOffersTableViewController.swift in Sources */,
 				061B1B621ADEA7820060165B /* ViewController.swift in Sources */,
 				061B1B601ADEA7820060165B /* BuySmart.xcdatamodeld in Sources */,
 				061B1B5D1ADEA7820060165B /* AppDelegate.swift in Sources */,
