@@ -10,11 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var lol: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lol.text = "lol"
     }
 
     override func didReceiveMemoryWarning() {
