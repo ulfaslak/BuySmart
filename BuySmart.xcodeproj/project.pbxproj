@@ -41,6 +41,7 @@
 		061B1B751ADEA7820060165B /* BuySmartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySmartTests.swift; sourceTree = "<group>"; };
 		4839E7BF51CD6D9F1BE4B709 /* Pods-BuySmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.release.xcconfig"; sourceTree = "<group>"; };
 		A5E550D01CE8E5C23AAB5C4A /* Pods-BuySmart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.debug.xcconfig"; sourceTree = "<group>"; };
+		AF18AD881ADEAF28007D5B8A /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		BB573F727993CE79ACF174E2 /* libPods-BuySmart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuySmart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				061B1B5C1ADEA7820060165B /* AppDelegate.swift */,
+				AF18AD881ADEAF28007D5B8A /* Header.h */,
 				061B1B611ADEA7820060165B /* ViewController.swift */,
 				061B1B631ADEA7820060165B /* Main.storyboard */,
 				061B1B661ADEA7820060165B /* Images.xcassets */,
@@ -436,6 +438,7 @@
 				INFOPLIST_FILE = BuySmartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuySmart.app/BuySmart";
 			};
 			name = Debug;
@@ -451,6 +454,7 @@
 				INFOPLIST_FILE = BuySmartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuySmart.app/BuySmart";
 			};
 			name = Release;

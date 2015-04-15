@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        ETA.initializeSDKWithAPIKey("00i6ktv4myp9htd7lsoy5yv9827rpte7", apiSecret: "00i6ktv4mynopjlv6i2r92lmb6xmt85c", appVersion: "0.01")
+
         return true
     }
 
