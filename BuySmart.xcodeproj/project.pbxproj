@@ -53,7 +53,6 @@
 		4839E7BF51CD6D9F1BE4B709 /* Pods-BuySmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.release.xcconfig"; sourceTree = "<group>"; };
 		A5E550D01CE8E5C23AAB5C4A /* Pods-BuySmart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.debug.xcconfig"; sourceTree = "<group>"; };
 		AF18AD881ADEAF28007D5B8A /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		AF6825AE1AE0FAC800573326 /* Header_Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header_Bridge.h; sourceTree = "<group>"; };
 		AF6825AF1AE0FB3C00573326 /* ETA_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETA_API.swift; sourceTree = "<group>"; };
 		AF6825B11AE0FB8000573326 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		BB573F727993CE79ACF174E2 /* libPods-BuySmart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuySmart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +84,6 @@
 		061B1B4E1ADEA7820060165B = {
 			isa = PBXGroup;
 			children = (
-				AF6825AE1AE0FAC800573326 /* Header_Bridge.h */,
 				061B1B591ADEA7820060165B /* BuySmart */,
 				061B1B721ADEA7820060165B /* BuySmartTests */,
 				061B1B581ADEA7820060165B /* Products */,
@@ -394,7 +392,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/Header_Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -432,7 +430,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/Header_Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
