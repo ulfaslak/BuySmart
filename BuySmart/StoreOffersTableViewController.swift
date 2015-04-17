@@ -16,13 +16,21 @@ class StoreOffersTableViewController: UITableViewController {
     
     @IBAction func updateDataSource(sender: AnyObject) {
         // Input parameters
-        var latitude = 55.785574
-        var longitude = 12.52138100000002
+        //var latitude = 55.785574
+        //var longitude = 12.52138100000002
         var radius = 1150
         var masterview: [NSDictionary] = []
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let locationManager = appDelegate.locationManager
+		var currentLat = locationManager.location.coordinate.latitude
+        var currentLng = locationManager.location.coordinate.longitude
+
+        println(currentLat)
+        println(currentLng)
+
         
-        ETA_API.getOffersFromWishList(shoppingList, latitude: latitude, longitude: longitude, radius: radius) { (master) -> Void in
+        ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
             self.dataSource = JSON(master)
             println(self.dataSource)
             

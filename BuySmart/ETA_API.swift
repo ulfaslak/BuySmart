@@ -13,6 +13,7 @@ class ETA_API {
     
     // Do any additional setup after loading the view, typically from a nib.
     
+    
     class func getOffersFromWishList(offerWishList: [String], latitude: Double, longitude: Double, radius: Int, completionHandler: ([NSDictionary] -> Void)) {
         
         // Init singleton eta
