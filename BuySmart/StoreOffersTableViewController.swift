@@ -33,7 +33,7 @@ class StoreOffersTableViewController: UITableViewController {
                 numberOfOffersInStores.append((i,self.dataSource[i]["offers"].count))
                 i++
             }
-            //numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
+            numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
             
             for tuple in numberOfOffersInStores{
                 self.sortedStores.append(tuple.0)
@@ -214,7 +214,7 @@ class StoreOffersTableViewController: UITableViewController {
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         
         // Remove lines from table cells
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
     
@@ -244,18 +244,21 @@ class StoreOffersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("shoppingCell", forIndexPath: indexPath) as! ShoppingTableViewCell
         
         let numberOfCellsInSection = dataSource[sortedStores[indexPath.section]]["offers"].count
-        
-        if indexPath.row % 2 == 1{
+        print(indexPath.row)
+        print(" ")
+        println(numberOfCellsInSection)
+
+        if true { //indexPath.row % 2 == 1{
             cell.backgroundColor = UIColor.clearColor()
         }
         
-        if indexPath.row < numberOfCellsInSection - 1 {
+        if true { //indexPath.row < numberOfCellsInSection - 1 {
             var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
             let image = UIImage(named: "storeBackgroundsGreenMid")
             imageView.image = image
             cell.addSubview(imageView)
             cell.sendSubviewToBack(imageView)
-        } else {
+        } else if indexPath.row == numberOfCellsInSection - 1 {
             var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
             let image = UIImage(named: "storeBackgroundsGreenBottom")
             imageView.image = image
@@ -314,6 +317,7 @@ class StoreOffersTableViewController: UITableViewController {
         // Add store name label
         headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"].string
         headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+        headerCell.textLabel?.textColor = UIColor.whiteColor()
         
         // Add right hand side details
         let address = dataSource[sortedStores[section]]["meta_data"]["street"].string
@@ -323,6 +327,10 @@ class StoreOffersTableViewController: UITableViewController {
         headerCell.rightLabel0.text = address
         headerCell.rightLabel1.text = postalCode
         headerCell.rightLabel2.text = "\(numberOfOffers) offers available"
+        
+        headerCell.rightLabel0.textColor = UIColor.whiteColor()
+        headerCell.rightLabel1.textColor = UIColor.whiteColor()
+        headerCell.rightLabel2.textColor = UIColor.whiteColor()
         
         return headerCell
     }
@@ -347,12 +355,14 @@ class StoreOffersTableViewController: UITableViewController {
     
     
     // Animation
+    /*
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
         UIView.animateWithDuration(0.25, animations: {
             cell.layer.transform = CATransform3DMakeScale(1,1,1)
         })
     }
+    */
     
     /*
     // Override to support conditional editing of the table view.
