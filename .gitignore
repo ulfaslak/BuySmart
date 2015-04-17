@@ -1,4 +1,5 @@
 Pods
 Podfile.lock
 *.xcworkspace
-BuySmart/Header.h
+.DS_Store
+xcuserdata/
