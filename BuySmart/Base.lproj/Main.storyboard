@@ -76,6 +76,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sxV-nk-1om">
+                            <rect key="frame" x="-23" y="-15" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="updateDataSource:" destination="nn2-5b-ihJ" eventType="touchUpInside" id="1fC-5E-AKS"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingCell" id="tcY-Pt-8Yw" customClass="ShoppingTableViewCell" customModule="BuySmart" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>

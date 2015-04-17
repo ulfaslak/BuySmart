@@ -11,7 +11,43 @@ import Darwin
 
 class StoreOffersTableViewController: UITableViewController {
     
-    var master: [[String:AnyObject]] =
+    var dataSource: JSON = []
+    var sortedStores = [Int]()
+    
+    @IBAction func updateDataSource(sender: AnyObject) {
+        // Input parameters
+        var latitude = 55.785574
+        var longitude = 12.52138100000002
+        var radius = 1150
+        var masterview: [NSDictionary] = []
+        
+        
+        ETA_API.getOffersFromWishList(shoppingList, latitude: latitude, longitude: longitude, radius: radius) { (master) -> Void in
+            self.dataSource = JSON(master)
+            println(self.dataSource)
+            
+            // Sort stores
+            var numberOfOffersInStores = [(Int, Int)]()
+            var i = 0
+            for store in self.dataSource {
+                numberOfOffersInStores.append((i,self.dataSource[i]["offers"].count))
+                i++
+            }
+            //numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
+            
+            for tuple in numberOfOffersInStores{
+                self.sortedStores.append(tuple.0)
+            }
+            
+            println(self.sortedStores)
+            
+            self.tableView.reloadData()
+            
+        }
+    }
+
+    /*
+    var dataSource: [[String:AnyObject]] =
     [
         [
             "meta_data":
@@ -139,6 +175,7 @@ class StoreOffersTableViewController: UITableViewController {
             ],
         ]
     ]
+    */
     
     
     func imageResize (#image:UIImage, cellWidth: CGFloat, cellHeight: CGFloat)-> UIImage{
@@ -169,8 +206,6 @@ class StoreOffersTableViewController: UITableViewController {
     }
     
     
-    var sortedStores = [Int]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,20 +215,6 @@ class StoreOffersTableViewController: UITableViewController {
         
         // Remove lines from table cells
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
-        // Sort stores
-        var numberOfOffersInStores = [(Int, Int)]()
-        var i = 0
-        for store in master {
-            numberOfOffersInStores.append((i,(master[i]["offers"] as! NSArray).count))
-            i++
-        }
-        numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
-        
-        for tuple in numberOfOffersInStores{
-            sortedStores.append(tuple.0)
-        }
-        
     }
     
     
@@ -208,18 +229,21 @@ class StoreOffersTableViewController: UITableViewController {
     
     // ## Initialize ##
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return master.count
+        println("numberOfSectionsInTableView, return: \(dataSource.count)")
+        return dataSource.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (master[sortedStores[section]]["offers"] as! NSArray).count
+        var returnObject = dataSource[sortedStores[section]]["offers"].count
+        println("numberOfRowsInSection \(section), return: \(returnObject)")
+        return returnObject
     }
     
     // ## Cells ##
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("shoppingCell", forIndexPath: indexPath) as! ShoppingTableViewCell
         
-        let numberOfCellsInSection = (master[sortedStores[indexPath.section]]["offers"] as! NSArray).count
+        let numberOfCellsInSection = dataSource[sortedStores[indexPath.section]]["offers"].count
         
         if indexPath.row % 2 == 1{
             cell.backgroundColor = UIColor.clearColor()
@@ -243,16 +267,16 @@ class StoreOffersTableViewController: UITableViewController {
         cell.textLabel?.backgroundColor = UIColor.clearColor()
         
         // Add heading label
-        cell.headingLabel.text = ((master[sortedStores[indexPath.section]]["offers"] as! NSArray)[indexPath.row] as! NSDictionary)["heading"] as? String
+        cell.headingLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["heading"]
         cell.headingLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         // Add description label
-        cell.descriptionLabel.text = ((master[sortedStores[indexPath.section]]["offers"] as! NSArray)[indexPath.row] as! NSDictionary)["description"] as? String
+        cell.descriptionLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["description"]
         cell.descriptionLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         cell.descriptionLabel.textColor = UIColor.grayColor()
         
         // Add price label
-        let priceString = String(Int(ceil((((master[sortedStores[indexPath.section]]["offers"] as! NSArray)[indexPath.row] as! NSDictionary)["price"] as! NSString).floatValue)))
+        let priceString = String(Int(ceil(dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["price"].floatValue)))
         
         cell.priceLabel.text = priceString + ",-"
         cell.priceLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
@@ -262,6 +286,10 @@ class StoreOffersTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 40
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     
@@ -276,7 +304,7 @@ class StoreOffersTableViewController: UITableViewController {
         headerCell.backgroundColor = UIColorFromHex(0x22b8a3, alpha: 1) //UIColor(white: 0.85, alpha: 1)
         
         // Add store image
-        let url = NSURL(string: (master[sortedStores[section]]["meta_data"] as! NSDictionary)["logo"] as! String)
+        let url = NSURL(string: dataSource[sortedStores[section]]["meta_data"]["logo"])
         let data = NSData(contentsOfURL: url!)
         if data != nil {
             let image = UIImage(data: data!)
@@ -284,13 +312,13 @@ class StoreOffersTableViewController: UITableViewController {
         }
         
         // Add store name label
-        headerCell.textLabel?.text = (master[sortedStores[section]]["meta_data"] as! NSDictionary)["nameStore"] as? String
+        headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"]
         headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         // Add right hand side details
-        let address = (master[sortedStores[section]]["meta_data"] as! NSDictionary)["street"] as! String
-        let postalCode = (master[sortedStores[section]]["meta_data"] as! NSDictionary)["zip_code"] as! String
-        let numberOfOffers = (master[sortedStores[section]]["offers"] as! NSArray).count
+        let address = dataSource[sortedStores[section]]["meta_data"]["street"] as! String
+        let postalCode = dataSource[sortedStores[section]]["meta_data"]["zip_code"] as! String
+        let numberOfOffers = dataSource[sortedStores[section]]["offers"].count
         
         headerCell.rightLabel0.text = address
         headerCell.rightLabel1.text = postalCode

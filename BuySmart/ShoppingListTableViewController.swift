@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+// Global shopping list
+var shoppingList = ["apples", "juice", "bananas","horsies"]
+var shoppingListHistory: [String] = []
+
+
+
 func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
     let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
     let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -16,10 +23,9 @@ func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
     return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
 }
 
+
+
 class ShoppingListTableViewController: UITableViewController, UITextFieldDelegate {
-    
-    var itemsArray = ["apples", "juice", "bananas","horsies"]
-    var itemsArrayHistory: [String] = []
     
     var textField: UITextField = UITextField(frame: CGRect(x: 18, y: 9, width: 500.00, height: 30.00))
     let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -28,7 +34,7 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
     func addItem() {
         if textField.text != "" {
             print(" with argument: \"\(textField.text)\"\n")
-            itemsArray.append(textField.text)
+            shoppingList.append(textField.text)
             self.tableView.reloadData()
             textField.text = ""
         } else {
@@ -119,10 +125,10 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
             return 1
         case 1:
             //println("initiating rows in section 1")
-            return itemsArray.count
+            return shoppingList.count
         case 2:
             //println("initiating rows in section 2")
-            return itemsArrayHistory.count
+            return shoppingListHistory.count
         default:
             return 0
         }
@@ -155,7 +161,7 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
             cell.sendSubviewToBack(imageViewAddItem)
         case 1:
             // Assigning text to rows
-            let itemsString = "\(itemsArray[indexPath.row])"
+            let itemsString = "\(shoppingList[indexPath.row])"
             cell.textLabel?.attributedText = NSMutableAttributedString(string: "   " + itemsString, attributes: [NSStrikethroughStyleAttributeName : 0])
             cell.textLabel?.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
             cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 18)
@@ -168,7 +174,7 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
             cell.sendSubviewToBack(imageViewChecked)
         default:
             // Defining gray strikethrough text
-            let itemsString = "\(itemsArrayHistory[indexPath.row])"
+            let itemsString = "\(shoppingListHistory[indexPath.row])"
             let strikeThroughString = NSMutableAttributedString(string: itemsString, attributes: [NSStrikethroughStyleAttributeName : 1])
             
             // Assigning text to rows
@@ -213,18 +219,18 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
             println(" in section \(indexPath.section)")
         case 1:
             println(" in section \(indexPath.section)")
-            itemsArrayHistory.append(itemsArray[indexPath.row])
-            itemsArray.removeAtIndex(indexPath.row)
+            shoppingListHistory.append(shoppingList[indexPath.row])
+            shoppingList.removeAtIndex(indexPath.row)
         case 2:
             println(" in section \(indexPath.section)")
-            itemsArray.append(itemsArrayHistory[indexPath.row])
-            itemsArrayHistory.removeAtIndex(indexPath.row)
+            shoppingList.append(shoppingListHistory[indexPath.row])
+            shoppingListHistory.removeAtIndex(indexPath.row)
         default:
             println(" ...ran default")
         }
         
-        print("\(itemsArray)\t")
-        print("\(itemsArrayHistory)\n")
+        print("\(shoppingList)\t")
+        print("\(shoppingListHistory)\n")
         
         // Deselect row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -249,15 +255,15 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
             case 0:
                 print("")
             case 1:
-                itemsArray.removeAtIndex(indexPath.row)
+                shoppingList.removeAtIndex(indexPath.row)
             case 2:
-                itemsArrayHistory.removeAtIndex(indexPath.row)
+                shoppingListHistory.removeAtIndex(indexPath.row)
             default:
                 print("")
             }
             
-            print("\(itemsArray)\t")
-            print("\(itemsArrayHistory)\n")
+            print("\(shoppingList)\t")
+            print("\(shoppingListHistory)\n")
             
             // Transition
             transition.type = kCATransitionFade
