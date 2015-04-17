@@ -1,11 +1,4 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+pod 'ETA-SDK'
 
-target 'BuySmart' do
-  pod 'ETA-SDK'
-end
 
-target 'BuySmartTests' do
-
-end
 
