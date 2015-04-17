@@ -267,11 +267,11 @@ class StoreOffersTableViewController: UITableViewController {
         cell.textLabel?.backgroundColor = UIColor.clearColor()
         
         // Add heading label
-        cell.headingLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["heading"]
+        cell.headingLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["heading"].string
         cell.headingLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         // Add description label
-        cell.descriptionLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["description"]
+        cell.descriptionLabel.text = dataSource[sortedStores[indexPath.section]]["offers"][indexPath.row]["description"].string
         cell.descriptionLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         cell.descriptionLabel.textColor = UIColor.grayColor()
         
@@ -304,7 +304,7 @@ class StoreOffersTableViewController: UITableViewController {
         headerCell.backgroundColor = UIColorFromHex(0x22b8a3, alpha: 1) //UIColor(white: 0.85, alpha: 1)
         
         // Add store image
-        let url = NSURL(string: dataSource[sortedStores[section]]["meta_data"]["logo"])
+        let url = NSURL(string: dataSource[sortedStores[section]]["meta_data"]["logo"].string!)
         let data = NSData(contentsOfURL: url!)
         if data != nil {
             let image = UIImage(data: data!)
@@ -312,12 +312,12 @@ class StoreOffersTableViewController: UITableViewController {
         }
         
         // Add store name label
-        headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"]
+        headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"].string
         headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         // Add right hand side details
-        let address = dataSource[sortedStores[section]]["meta_data"]["street"] as! String
-        let postalCode = dataSource[sortedStores[section]]["meta_data"]["zip_code"] as! String
+        let address = dataSource[sortedStores[section]]["meta_data"]["street"].string
+        let postalCode = dataSource[sortedStores[section]]["meta_data"]["zip_code"].string
         let numberOfOffers = dataSource[sortedStores[section]]["offers"].count
         
         headerCell.rightLabel0.text = address
