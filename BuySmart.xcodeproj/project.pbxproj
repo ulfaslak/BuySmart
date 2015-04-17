@@ -92,13 +92,13 @@
 			isa = PBXGroup;
 			children = (
 				061B1B5C1ADEA7820060165B /* AppDelegate.swift */,
-				AF18AD881ADEAF28007D5B8A /* Header.h */,
 				061B1B611ADEA7820060165B /* ViewController.swift */,
 				065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */,
 				065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */,
 				061B1B631ADEA7820060165B /* Main.storyboard */,
 				061B1B661ADEA7820060165B /* Images.xcassets */,
 				061B1B681ADEA7820060165B /* LaunchScreen.xib */,
+				AF18AD881ADEAF28007D5B8A /* Header.h */,
 				061B1B5E1ADEA7820060165B /* BuySmart.xcdatamodeld */,
 				061B1B5A1ADEA7820060165B /* Supporting Files */,
 			);
@@ -417,6 +417,7 @@
 				INFOPLIST_FILE = BuySmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BuySmart/Header.h;
 			};
 			name = Debug;
 		};
@@ -428,6 +429,7 @@
 				INFOPLIST_FILE = BuySmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BuySmart/Header.h;
 			};
 			name = Release;
 		};
@@ -446,7 +448,7 @@
 				INFOPLIST_FILE = BuySmartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuySmart.app/BuySmart";
 			};
 			name = Debug;
@@ -462,7 +464,7 @@
 				INFOPLIST_FILE = BuySmartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Henrik/iOS_programs/BuySmart/BuySmart/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuySmart.app/BuySmart";
 			};
 			name = Release;
