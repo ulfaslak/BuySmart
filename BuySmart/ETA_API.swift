@@ -160,10 +160,13 @@ class ETA_API {
                     }
                     
                     dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
-                        storeDict.updateValue(metaData, forKey: "meta_data")
-                        storeDict.updateValue(offers, forKey: "offers")  // offers is empty due to its appending inside the closure
-                        master.append(storeDict)
-                        offers = []
+                        
+                        if offers.count > 0 {
+                            storeDict.updateValue(metaData, forKey: "meta_data")
+                            storeDict.updateValue(offers, forKey: "offers")  // offers is empty due to its appending inside the closure
+                            master.append(storeDict)
+                            
+                        }
                         
                     }
                     
