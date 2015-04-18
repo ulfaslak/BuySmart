@@ -16,9 +16,9 @@
 		061B1B761ADEA7820060165B /* BuySmartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B1B751ADEA7820060165B /* BuySmartTests.swift */; };
 		065AF1021ADEB4FD0067F829 /* StoreOffersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */; };
 		065AF1041ADEB51C0067F829 /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */; };
+		069499DB1AE26AB800A1F5CC /* libPods-ETA-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069499DA1AE26AB800A1F5CC /* libPods-ETA-SDK.a */; };
 		06F8BAC01AE0F54F00645F2D /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8BABF1AE0F54E00645F2D /* ShoppingTableViewCell.swift */; };
 		06F8BAC21AE0F57F00645F2D /* ShoppingTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8BAC11AE0F57F00645F2D /* ShoppingTableViewHeaderCell.swift */; };
-		9B980C08D42FDD3BE8847F57 /* libPods-BuySmart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB573F727993CE79ACF174E2 /* libPods-BuySmart.a */; };
 		AC84B8D4DDC3DB34230A5AA8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD29BA52E004D07D4AE81D4 /* libPods.a */; };
 		AF6825B01AE0FB3C00573326 /* ETA_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6825AF1AE0FB3C00573326 /* ETA_API.swift */; };
 		AF6825B21AE0FB8000573326 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6825B11AE0FB8000573326 /* SwiftyJSON.swift */; };
@@ -48,6 +48,7 @@
 		061B1B751ADEA7820060165B /* BuySmartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySmartTests.swift; sourceTree = "<group>"; };
 		065AF1011ADEB4FD0067F829 /* StoreOffersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreOffersTableViewController.swift; sourceTree = "<group>"; };
 		065AF1031ADEB51C0067F829 /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
+		069499DA1AE26AB800A1F5CC /* libPods-ETA-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ETA-SDK.a"; path = "Pods/../build/Debug-iphoneos/libPods-ETA-SDK.a"; sourceTree = "<group>"; };
 		06F8BABF1AE0F54E00645F2D /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
 		06F8BAC11AE0F57F00645F2D /* ShoppingTableViewHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		4839E7BF51CD6D9F1BE4B709 /* Pods-BuySmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuySmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuySmart/Pods-BuySmart.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B980C08D42FDD3BE8847F57 /* libPods-BuySmart.a in Frameworks */,
+				069499DB1AE26AB800A1F5CC /* libPods-ETA-SDK.a in Frameworks */,
 				AC84B8D4DDC3DB34230A5AA8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +151,7 @@
 		675F97F885357FF2216962EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				069499DA1AE26AB800A1F5CC /* libPods-ETA-SDK.a */,
 				BB573F727993CE79ACF174E2 /* libPods-BuySmart.a */,
 				FFD29BA52E004D07D4AE81D4 /* libPods.a */,
 			);
@@ -442,6 +444,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BuySmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BuySmart/Header.h;
 			};
@@ -454,6 +460,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BuySmart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BuySmart/Header.h;
 			};

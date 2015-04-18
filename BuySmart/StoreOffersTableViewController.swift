@@ -23,6 +23,7 @@ class StoreOffersTableViewController: UITableViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let locationManager = appDelegate.locationManager
+        print("location \(appDelegate)")
 		var currentLat = locationManager.location.coordinate.latitude
         var currentLng = locationManager.location.coordinate.longitude
 
