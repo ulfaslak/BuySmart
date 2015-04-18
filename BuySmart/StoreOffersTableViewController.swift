@@ -9,10 +9,10 @@
 import UIKit
 import Darwin
 
+var dataSource: JSON = []
+var sortedStores = [Int]()
+
 class StoreOffersTableViewController: UITableViewController {
-    
-    var dataSource: JSON = []
-    var sortedStores = [Int]()
     
     @IBAction func updateDataSource(sender: AnyObject) {
         // Input parameters
@@ -32,159 +32,28 @@ class StoreOffersTableViewController: UITableViewController {
 
         
         ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
-            self.dataSource = JSON(master)
-            println(self.dataSource)
+            dataSource = JSON(master)
+            println(dataSource)
             
             // Sort stores
             var numberOfOffersInStores = [(Int, Int)]()
             var i = 0
-            for store in self.dataSource {
-                numberOfOffersInStores.append((i,self.dataSource[i]["offers"].count))
+            for store in dataSource {
+                numberOfOffersInStores.append((i,dataSource[i]["offers"].count))
                 i++
             }
             numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
             
             for tuple in numberOfOffersInStores{
-                self.sortedStores.append(tuple.0)
+                sortedStores.append(tuple.0)
             }
             
-            println(self.sortedStores)
+            println(sortedStores)
             
             self.tableView.reloadData()
             
         }
     }
-
-    /*
-    var dataSource: [[String:AnyObject]] =
-    [
-        [
-            "meta_data":
-                [
-                    "city": "Kongens Lyngby",
-                    "dealer_id_store": "d8adog",
-                    "logo": "https://d3ikkoqs9ddhdl.cloudfront.net/img/logo/default/d8adog_3qvn3g8xp.png",
-                    "nameStore": "døgnNetto",
-                    "store_id": "d2283Zm",
-                    "street": "Kollegiebakken 7",
-                    "zip_code": "2800",
-            ],
-            "offers":
-                [
-                    [
-                        "dealer_id_offer": "d8adog",
-                        "description": "2 liter ex. emb. pr. liter 6,00",
-                        "heading": "Faxe Kondi, Faxe Kondi free, Pepsi Max eller Nikoline",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/2f25oeq3.jpg?0",
-                        "name_offer": "døgnNetto",
-                        "offerWishItem": "Faxe Kondi",
-                        "price": "12",
-                        "store_id": "d2283Zm",
-                    ]
-            ]
-        ],
-        [
-            "meta_data":
-                [
-                    "city": "Lyngby",
-                    "dealer_id_store": "1e1eB",
-                    "logo": "https://d3ikkoqs9ddhdl.cloudfront.net/img/logo/default/1e1eB_2fmm5lbyb.png",
-                    "nameStore": "EUROSPAR",
-                    "store_id": "0ee1b6m",
-                    "street": "Lyngbygårdsvej 141",
-                    "zip_code": "2800",
-            ],
-            "offers":
-                [
-                    [
-                        "dealer_id_offer": "1e1eB",
-                        "description": "Skovbær, Vanilje eller Jordbær & Rabarber",
-                        "heading": "Cheasy Yoghurt",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/bf1bgaC3.jpg?0",
-                        "name_offer": "EUROSPAR",
-                        "offerWishItem": "yoghurt",
-                        "price": "11",
-                        "store_id": "0ee1b6m",
-                    ],
-                    [
-                        "dealer_id_offer": "1e1eB",
-                        "description": "24 dåser 33 cl Pr. ltr. 8,83 v/køb af 24 ds. + Pant Sælges kun i hele rammer. Max. 3x24 dåser pr. kunde Pr. dag",
-                        "heading": "Dåse Pepsi, Faxe Kondi eller Pepsi Max",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/f2889pE3.jpg?0",
-                        "name_offer": "EUROSPAR",
-                        "offerWishItem": "Faxe Kondi",
-                        "price": "69.95",
-                        "store_id": "0ee1b6m",
-                    ],
-                    [
-                        "dealer_id_offer": "1e1eB",
-                        "description": "Blåbær & Banan, Jordbær, Pære & Banan, Vanilje, Fersken & Hindbær eller Havens Bær 1 ltr. Frit valg",
-                        "heading": "Yoggi Yoghurt",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/7a1eKxE3.jpg?0",
-                        "name_offer": "EUROSPAR",
-                        "offerWishItem": "yoghurt",
-                        "price": "11",
-                        "store_id": "0ee1b6m",
-                    ],
-                    [
-                        "dealer_id_offer": "1e1eB",
-                        "description": "500 g Pr. kg 30,00",
-                        "heading": "Antos ægte Græsk Yoghurt",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/e6b6AaC3.jpg?0",
-                        "name_offer": "EUROSPAR",
-                        "offerWishItem": "yoghurt",
-                        "price": "15",
-                        "store_id": "0ee1b6m",
-                    ]
-            ],
-        ],
-        [
-            "meta_data":
-                [
-                    "city": "Kongens Lyngby",
-                    "dealer_id_store": "0b1e8",
-                    "logo": "https://d3ikkoqs9ddhdl.cloudfront.net/img/logo/default/0b1e8_7lbmygqwm.png",
-                    "nameStore": "SuperBrugsen",
-                    "store_id": "d5d7DBm",
-                    "street": "Lyngbygårdsvej 153",
-                    "zip_code": "2800",
-            ],
-            "offers":
-                [
-                    [
-                        "dealer_id_offer": "0b1e8",
-                        "description": "24 x 33 cl Literpris 8,83 + pant. Frit valg",
-                        "heading": "Faxe Kondi, Pepsi Max, Pepsi eller Nikoline",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/529fPlC3.jpg?0",
-                        "name_offer": "SuperBrugsen",
-                        "offerWishItem": "Faxe Kondi",
-                        "price": "69.95",
-                        "store_id": "d5d7DBm",
-                    ],
-                    [
-                        "dealer_id_offer": "0b1e8",
-                        "description": "1000 g. Kg-pris 15,00. Frit valg",
-                        "heading": "Cheasy skyryoghurt",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/385b8lC3.jpg?0",
-                        "name_offer": "SuperBrugsen",
-                        "offerWishItem": "yoghurt",
-                        "price": "15",
-                        "store_id": "d5d7DBm",
-                    ],
-                    [
-                        "dealer_id_offer": "0b1e8",
-                        "description": "Nyhed. 1000 g. Kg-pris 14,00. Frit valg",
-                        "heading": "Valio yoghurt",
-                        "image": "https://d3ikkoqs9ddhdl.cloudfront.net/img/offer/crop/view/cbddylC3.jpg?0",
-                        "name_offer": "SuperBrugsen",
-                        "offerWishItem": "yoghurt",
-                        "price": "14",
-                        "store_id": "d5d7DBm",
-                    ]
-            ],
-        ]
-    ]
-    */
     
     
     func imageResize (#image:UIImage, cellWidth: CGFloat, cellHeight: CGFloat)-> UIImage{
