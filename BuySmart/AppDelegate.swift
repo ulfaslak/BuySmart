@@ -101,6 +101,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        println("Storing shoppingList, shoppingListHistory, dataSource and sortedStores")
+        
+        NSUserDefaults.standardUserDefaults().setObject(shoppingList, forKey: "shoppingList")
+        NSUserDefaults.standardUserDefaults().setObject(shoppingListHistory, forKey: "shoppingListHistory")
+        NSUserDefaults.standardUserDefaults().setObject(dataSource.rawString(), forKey: "dataSource")
+        NSUserDefaults.standardUserDefaults().setObject(sortedStores, forKey: "sortedStores")
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -115,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        
     }
 
     // MARK: - Core Data stack

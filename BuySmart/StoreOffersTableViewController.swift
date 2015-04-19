@@ -15,15 +15,12 @@ var sortedStores = [Int]()
 class StoreOffersTableViewController: UITableViewController {
     
     @IBAction func updateDataSource(sender: AnyObject) {
-        // Input parameters
-        //var latitude = 55.785574
-        //var longitude = 12.52138100000002
         var radius = 1150
         var masterview: [NSDictionary] = []
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let locationManager = appDelegate.locationManager
-        print("location \(appDelegate)")
+
 		var currentLat = locationManager.location.coordinate.latitude
         var currentLng = locationManager.location.coordinate.longitude
 
@@ -33,7 +30,6 @@ class StoreOffersTableViewController: UITableViewController {
         
         ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
             dataSource = JSON(master)
-            println(dataSource)
             
             // Sort stores
             var numberOfOffersInStores = [(Int, Int)]()
@@ -47,8 +43,6 @@ class StoreOffersTableViewController: UITableViewController {
             for tuple in numberOfOffersInStores{
                 sortedStores.append(tuple.0)
             }
-            
-            println(sortedStores)
             
             self.tableView.reloadData()
             
@@ -88,6 +82,17 @@ class StoreOffersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        println("StoreOffersTableViewController viewDidLoad() ran")
+        
+        if sortedStores.count == 0 {
+            println("Loading dataSource and sortedStores")
+            dataSource = JSON(NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! String)
+            sortedStores = NSUserDefaults.standardUserDefaults().objectForKey("sortedStores") as! [Int]
+            println(dataSource.count)
+            
+            self.tableView.reloadData()
+        }
+        
         // Setting up background image
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         
@@ -107,13 +112,13 @@ class StoreOffersTableViewController: UITableViewController {
     
     // ## Initialize ##
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        println("numberOfSectionsInTableView, return: \(dataSource.count)")
+        //println("numberOfSectionsInTableView, return: \(dataSource.count)")
         return dataSource.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnObject = dataSource[sortedStores[section]]["offers"].count
-        println("numberOfRowsInSection \(section), return: \(returnObject)")
+        //println("numberOfRowsInSection \(section), return: \(returnObject)")
         return returnObject
     }
     
@@ -122,10 +127,11 @@ class StoreOffersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("shoppingCell", forIndexPath: indexPath) as! ShoppingTableViewCell
         
         let numberOfCellsInSection = dataSource[sortedStores[indexPath.section]]["offers"].count
+        /*
         print(indexPath.row)
         print(" ")
         println(numberOfCellsInSection)
-
+        */
         if true { //indexPath.row % 2 == 1{
             cell.backgroundColor = UIColor.clearColor()
         }

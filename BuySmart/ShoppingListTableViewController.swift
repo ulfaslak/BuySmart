@@ -10,8 +10,8 @@ import UIKit
 
 
 // Global shopping list
-var shoppingList = ["apples", "juice", "bananas","horsies"]
-var shoppingListHistory: [String] = []
+var shoppingList = [String]()
+var shoppingListHistory = [String]()
 
 
 
@@ -45,6 +45,12 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if shoppingList.count == 0 {
+            print("Loading shoppingList and shoppingListHistory")
+            shoppingList = NSUserDefaults.standardUserDefaults().objectForKey("shoppingList") as! [String]
+            shoppingListHistory = NSUserDefaults.standardUserDefaults().objectForKey("shoppingListHistory") as! [String]
+        }
         
         // Setting up text field
         self.view.addSubview(textField)
