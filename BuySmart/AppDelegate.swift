@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         NSUserDefaults.standardUserDefaults().setObject(shoppingList, forKey: "shoppingList")
         NSUserDefaults.standardUserDefaults().setObject(shoppingListHistory, forKey: "shoppingListHistory")
-        NSUserDefaults.standardUserDefaults().setObject(dataSource.rawString(), forKey: "dataSource")
+        NSUserDefaults.standardUserDefaults().setObject(theMaster, forKey: "dataSource")
         NSUserDefaults.standardUserDefaults().setObject(sortedStores, forKey: "sortedStores")
     }
 

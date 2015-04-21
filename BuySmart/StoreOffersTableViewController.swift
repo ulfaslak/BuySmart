@@ -11,6 +11,7 @@ import Darwin
 
 var dataSource: JSON = []
 var sortedStores = [Int]()
+var theMaster = [NSDictionary]()
 
 class StoreOffersTableViewController: UITableViewController {
     
@@ -21,14 +22,14 @@ class StoreOffersTableViewController: UITableViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let locationManager = appDelegate.locationManager
 
-		var currentLat = locationManager.location.coordinate.latitude
-        var currentLng = locationManager.location.coordinate.longitude
+		var currentLat = 55.706683 //locationManager.location.coordinate.latitude
+        var currentLng = 12.542986 //locationManager.location.coordinate.longitude
 
         println(currentLat)
         println(currentLng)
 
-        
         ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
+            theMaster = master
             dataSource = JSON(master)
             
             // Sort stores
@@ -86,7 +87,8 @@ class StoreOffersTableViewController: UITableViewController {
         
         if sortedStores.count == 0 {
             println("Loading dataSource and sortedStores")
-            dataSource = JSON(NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! String)
+            theMaster = NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! [NSDictionary]
+            dataSource = JSON(theMaster)
             sortedStores = NSUserDefaults.standardUserDefaults().objectForKey("sortedStores") as! [Int]
             println(dataSource.count)
             
