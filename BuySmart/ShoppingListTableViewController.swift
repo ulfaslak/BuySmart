@@ -14,7 +14,6 @@ var shoppingList = [String]()
 var shoppingListHistory = [String]()
 
 
-
 func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
     let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
     let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -48,8 +47,13 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
         
         if shoppingList.count == 0 {
             print("Loading shoppingList and shoppingListHistory")
-            shoppingList = NSUserDefaults.standardUserDefaults().objectForKey("shoppingList") as! [String]
-            shoppingListHistory = NSUserDefaults.standardUserDefaults().objectForKey("shoppingListHistory") as! [String]
+            if NSUserDefaults.standardUserDefaults().objectForKey("shoppingList") != nil {
+                shoppingList = NSUserDefaults.standardUserDefaults().objectForKey("shoppingList") as! [String]
+            }
+            
+            if NSUserDefaults.standardUserDefaults().objectForKey("shoppingListHistory") != nil {
+                shoppingListHistory = NSUserDefaults.standardUserDefaults().objectForKey("shoppingListHistory") as! [String]
+            }
         }
         
         // Setting up text field

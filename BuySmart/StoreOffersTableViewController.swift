@@ -22,8 +22,8 @@ class StoreOffersTableViewController: UITableViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let locationManager = appDelegate.locationManager
 
-		var currentLat = 55.706683 //locationManager.location.coordinate.latitude
-        var currentLng = 12.542986 //locationManager.location.coordinate.longitude
+		var currentLat = locationManager.location.coordinate.latitude
+        var currentLng = locationManager.location.coordinate.longitude
 
         println(currentLat)
         println(currentLng)
@@ -87,12 +87,15 @@ class StoreOffersTableViewController: UITableViewController {
         
         if sortedStores.count == 0 {
             println("Loading dataSource and sortedStores")
-            theMaster = NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! [NSDictionary]
-            dataSource = JSON(theMaster)
-            sortedStores = NSUserDefaults.standardUserDefaults().objectForKey("sortedStores") as! [Int]
-            println(dataSource.count)
+            if NSUserDefaults.standardUserDefaults().objectForKey("dataSource") != nil {
             
-            self.tableView.reloadData()
+                theMaster = NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! [NSDictionary]
+                dataSource = JSON(theMaster)
+                sortedStores = NSUserDefaults.standardUserDefaults().objectForKey("sortedStores") as! [Int]
+                println(dataSource.count)
+                
+                self.tableView.reloadData()
+            }
         }
         
         // Setting up background image
