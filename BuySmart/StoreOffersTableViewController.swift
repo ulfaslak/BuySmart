@@ -15,41 +15,12 @@ var theMaster = [NSDictionary]()
 
 class StoreOffersTableViewController: UITableViewController {
     
-    @IBAction func updateDataSource(sender: AnyObject) {
-        var radius = 1150
-        var masterview: [NSDictionary] = []
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let locationManager = appDelegate.locationManager
-
-		var currentLat = locationManager.location.coordinate.latitude
-        var currentLng = locationManager.location.coordinate.longitude
-
-        println(currentLat)
-        println(currentLng)
-
-        ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
-            theMaster = master
-            dataSource = JSON(master)
-            
-            // Sort stores
-            var numberOfOffersInStores = [(Int, Int)]()
-            var i = 0
-            for store in dataSource {
-                numberOfOffersInStores.append((i,dataSource[i]["offers"].count))
-                i++
-            }
-            numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
-            
-            for tuple in numberOfOffersInStores{
-                sortedStores.append(tuple.0)
-            }
-            
-            self.tableView.reloadData()
-            
-        }
-    }
+    @IBOutlet var radiusSliderValue: UILabel!
     
+    @IBOutlet var radiusSliderOutlet: UISlider!
+    @IBAction func radiusSlider(sender: AnyObject) {
+        radiusSliderValue.text = "\(Int(radiusSliderOutlet.value)) m"
+    }
     
     func imageResize (#image:UIImage, cellWidth: CGFloat, cellHeight: CGFloat)-> UIImage{
         
@@ -79,6 +50,45 @@ class StoreOffersTableViewController: UITableViewController {
     }
     
     
+    var refresher: UIRefreshControl!
+    
+    func refresh() {
+        var masterview: [NSDictionary] = []
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let locationManager = appDelegate.locationManager
+        
+        var radius = Int(radiusSliderOutlet.value)
+        print(radius)
+        var currentLat = 55.706683 //locationManager.location.coordinate.latitude
+        var currentLng = 12.542986 //locationManager.location.coordinate.longitude
+        
+        println(currentLat)
+        println(currentLng)
+        
+        ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
+            theMaster = master
+            dataSource = JSON(master)
+            
+            // Sort stores
+            sortedStores = [Int]()
+            var numberOfOffersInStores = [(Int, Int)]()
+            var i = 0
+            for store in dataSource {
+                numberOfOffersInStores.append((i,dataSource[i]["offers"].count))
+                i++
+            }
+            numberOfOffersInStores.sort{ $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0 }
+            
+            for tuple in numberOfOffersInStores{
+                sortedStores.append(tuple.0)
+            }
+            
+            self.refresher.endRefreshing()
+            self.tableView.reloadData()
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +107,15 @@ class StoreOffersTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        // Set slider value
+        radiusSliderValue.text = "\(Int(radiusSliderOutlet.value)) m"
+        
+        // Pull to refresh
+        self.refresher = UIRefreshControl()
+        self.refresher.attributedTitle = NSAttributedString(string: "")
+        self.refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refresher)
         
         // Setting up background image
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
@@ -141,19 +160,11 @@ class StoreOffersTableViewController: UITableViewController {
             cell.backgroundColor = UIColor.clearColor()
         }
         
-        if true { //indexPath.row < numberOfCellsInSection - 1 {
-            var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
-            let image = UIImage(named: "storeBackgroundsGreenMid")
-            imageView.image = image
-            cell.addSubview(imageView)
-            cell.sendSubviewToBack(imageView)
-        } else if indexPath.row == numberOfCellsInSection - 1 {
-            var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
-            let image = UIImage(named: "storeBackgroundsGreenBottom")
-            imageView.image = image
-            cell.addSubview(imageView)
-            cell.sendSubviewToBack(imageView)
-        }
+        var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+        let image = UIImage(named: "storeBackgroundsGreenMid")
+        imageView.image = image
+        cell.addSubview(imageView)
+        cell.sendSubviewToBack(imageView)
         
         // Clear up startup background
         cell.textLabel?.backgroundColor = UIColor.clearColor()
@@ -196,6 +207,7 @@ class StoreOffersTableViewController: UITableViewController {
         headerCell.backgroundColor = UIColorFromHex(0x22b8a3, alpha: 1) //UIColor(white: 0.85, alpha: 1)
         
         // Add store image
+        // print(dataSource[sortedStores[section]]["meta_data"]["logo"])
         let url = NSURL(string: dataSource[sortedStores[section]]["meta_data"]["logo"].string!)
         let data = NSData(contentsOfURL: url!)
         if data != nil {

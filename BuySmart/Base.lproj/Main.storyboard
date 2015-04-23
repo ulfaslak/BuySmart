@@ -76,16 +76,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sxV-nk-1om">
-                            <rect key="frame" x="-23" y="-15" width="320" height="44"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7RK-Io-rkn">
+                            <rect key="frame" x="0.0" y="64" width="320" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="updateDataSource:" destination="nn2-5b-ihJ" eventType="touchUpInside" id="1fC-5E-AKS"/>
-                            </connections>
-                        </button>
+                            <subviews>
+                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="0.0" maxValue="9999" translatesAutoresizingMaskIntoConstraints="NO" id="V35-0J-HY9">
+                                    <rect key="frame" x="6" y="42" width="262" height="31"/>
+                                    <connections>
+                                        <action selector="radiusSlider:" destination="nn2-5b-ihJ" eventType="valueChanged" id="vFi-6u-FPP"/>
+                                    </connections>
+                                </slider>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999 m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqX-05-loX">
+                                    <rect key="frame" x="272" y="47" width="47" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingCell" id="tcY-Pt-8Yw" customClass="ShoppingTableViewCell" customModule="BuySmart" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -162,6 +171,10 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="radiusSliderOutlet" destination="V35-0J-HY9" id="PkS-jx-GT5"/>
+                        <outlet property="radiusSliderValue" destination="dqX-05-loX" id="yQf-Xj-NEm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBT-aL-d5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
