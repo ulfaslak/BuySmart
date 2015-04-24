@@ -69,7 +69,7 @@ class StoreOffersTableViewController: UITableViewController {
         ETA_API.getOffersFromWishList(shoppingList, latitude: currentLat, longitude: currentLng, radius: radius) { (master) -> Void in
             theMaster = master
             dataSource = JSON(master)
-            
+            //println(dataSource)
             // Sort stores
             sortedStores = [Int]()
             var numberOfOffersInStores = [(Int, Int)]()
