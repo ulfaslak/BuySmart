@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Ulf Aslak Jensen. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 import UIKit
 
+// Extension/functions to calculate days left of offers
 
 extension NSDate {
     
@@ -53,7 +55,6 @@ class ETA_API {
     
     // Do any additional setup after loading the view, typically from a nib.
     
-    
     class func getOffersFromWishList(offerWishList: [String], latitude: Double, longitude: Double, radius: Int, completionHandler: ([NSDictionary] -> Void)) {
         
         // Init singleton eta
@@ -94,7 +95,7 @@ class ETA_API {
                 for store in storeArray {
                     
                     var storeDict = [String: AnyObject]()
-                    var metaData = [String: String]()
+                    var metaData = [String: AnyObject]()
                     var offers: [NSDictionary] = []
                     
                     var nameStore = store["branding"]["name"].stringValue
@@ -106,8 +107,14 @@ class ETA_API {
                     var logo = store["branding"]["logo"].stringValue
                     var store_latitude = store["latitude"].stringValue
                     var store_longitude = store["longitude"].stringValue
-                    
-                    metaData = ["nameStore": nameStore, "store_id": store_id, "street": street, "city": city, "zip_code": zip_code, "dealer_id_store": dealer_id_store, "logo": logo, "store_latitude ": store_latitude, "store_longitude": store_longitude]
+                   
+                    let store_loc = CLLocation(latitude: store["latitude"].doubleValue, longitude: store["longitude"].doubleValue)
+    
+                    let my_loc = CLLocation(latitude: latitude, longitude: longitude)
+
+                    let distance = my_loc.distanceFromLocation(store_loc)
+					
+                    metaData = ["nameStore": nameStore, "store_id": store_id, "street": street, "city": city, "zip_code": zip_code, "dealer_id_store": dealer_id_store, "logo": logo, "store_latitude ": store_latitude, "store_longitude": store_longitude, "distance": distance]
                     
                     //store_id_list.append(store_id)
                     
