@@ -26,7 +26,7 @@ func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
 
 class ShoppingListTableViewController: UITableViewController, UITextFieldDelegate {
     
-    var textField: UITextField = UITextField(frame: CGRect(x: 18, y: 9, width: 500.00, height: 30.00))
+    var textField: UITextField = UITextField(frame: CGRect(x: 18, y: 9, width: 500.00, height: 50.00))
     let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
     let transition = CATransition()
     
@@ -59,7 +59,7 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
         // Setting up text field
         self.view.addSubview(textField)
         textField.borderStyle = UITextBorderStyle.None
-        textField.frame = CGRect(x: view.bounds.width*0.225, y: 7.5, width: view.bounds.width*0.75, height: 30)
+        textField.frame = CGRect(x: view.bounds.width*0.225, y: 3, width: view.bounds.width*0.75, height: 40)
         textField.placeholder = "Add item..."
         textField.textColor = UIColor.whiteColor()
         textField.font = UIFont(name: "HelveticaNeue-Light", size: 16)
@@ -75,7 +75,7 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
         textField.delegate = self
         
         // Setting up background image
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "backgroundWhite"))
         
         // Remove lines from table cells
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None

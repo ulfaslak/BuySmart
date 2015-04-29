@@ -80,16 +80,33 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPj-b5-qao">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                                    <color key="backgroundColor" red="0.99607843137254903" green="0.74901960784313726" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="0.0" maxValue="9999" translatesAutoresizingMaskIntoConstraints="NO" id="V35-0J-HY9">
-                                    <rect key="frame" x="6" y="42" width="262" height="31"/>
+                                    <rect key="frame" x="6" y="37" width="262" height="31"/>
+                                    <color key="tintColor" red="0.0" green="0.6705882352941176" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="minimumTrackTintColor" red="0.25490196078431371" green="0.6588235294117647" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="maximumTrackTintColor" red="0.25490196078431371" green="0.6588235294117647" blue="0.49019607843137253" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
+                                    <color key="thumbTintColor" red="0.25490196079999999" green="0.6588235294" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="radiusSlider:" destination="nn2-5b-ihJ" eventType="valueChanged" id="vFi-6u-FPP"/>
                                     </connections>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999 m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqX-05-loX">
-                                    <rect key="frame" x="272" y="47" width="47" height="21"/>
+                                    <rect key="frame" x="272" y="42" width="47" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.0" green="0.6705882352941176" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mc2-qq-jZe">
+                                    <rect key="frame" x="17" y="0.0" width="212" height="42"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.6705882352941176" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -152,6 +169,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="rightLabel0" destination="X20-Xa-CVo" id="69Y-QV-cRS"/>
                                     <outlet property="rightLabel1" destination="gud-ov-2Rf" id="7o3-yK-6sn"/>
@@ -174,6 +192,7 @@
                     <connections>
                         <outlet property="radiusSliderOutlet" destination="V35-0J-HY9" id="PkS-jx-GT5"/>
                         <outlet property="radiusSliderValue" destination="dqX-05-loX" id="yQf-Xj-NEm"/>
+                        <outlet property="storeCountLabel" destination="mc2-qq-jZe" id="0N6-rq-qyn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBT-aL-d5E" userLabel="First Responder" sceneMemberID="firstResponder"/>

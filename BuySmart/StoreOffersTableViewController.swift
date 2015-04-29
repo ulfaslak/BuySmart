@@ -12,15 +12,21 @@ import Darwin
 var dataSource: JSON = []
 var sortedStores = [Int]()
 var theMaster = [NSDictionary]()
+var headerCount = 0
+var sliderPosition = FloatingPointType(1000)
 
 class StoreOffersTableViewController: UITableViewController {
     
     @IBOutlet var radiusSliderValue: UILabel!
+    @IBOutlet var storeCountLabel: UILabel!
     
     @IBOutlet var radiusSliderOutlet: UISlider!
     @IBAction func radiusSlider(sender: AnyObject) {
         radiusSliderValue.text = "\(Int(radiusSliderOutlet.value)) m"
+        sliderPosition = radiusSliderOutlet.value
     }
+    
+    let transition = CATransition()
     
     func imageResize (#image:UIImage, cellWidth: CGFloat, cellHeight: CGFloat)-> UIImage{
         
@@ -90,6 +96,31 @@ class StoreOffersTableViewController: UITableViewController {
         }
     }
     
+    func setMainHeaderValues () {
+        
+        if dataSource.count == 0{
+            storeCountLabel.text = "No stores loaded"
+        } else if dataSource.count == 1 {
+            storeCountLabel.text = "1 store found"
+        }
+        else {
+            storeCountLabel.text = "\(dataSource.count) stores found"
+        }
+        
+    }
+    
+    func setBackground () {
+        if dataSource.count == 0 {
+            self.tableView.backgroundView = UIImageView(image: UIImage(named: "backgroundWhiteEmpty"))
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        }
+        else {
+            self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+            self.tableView.backgroundView!.alpha = 0.2
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,7 +139,13 @@ class StoreOffersTableViewController: UITableViewController {
             }
         }
         
+        // Set store count label
+        setMainHeaderValues()
+        
         // Set slider value
+        radiusSliderOutlet.value = sliderPosition
+        
+        // Set slider value label text
         radiusSliderValue.text = "\(Int(radiusSliderOutlet.value)) m"
         
         // Pull to refresh
@@ -116,12 +153,6 @@ class StoreOffersTableViewController: UITableViewController {
         self.refresher.attributedTitle = NSAttributedString(string: "")
         self.refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refresher)
-        
-        // Setting up background image
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
-        
-        // Remove lines from table cells
-        //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
     
@@ -137,6 +168,10 @@ class StoreOffersTableViewController: UITableViewController {
     // ## Initialize ##
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         //println("numberOfSectionsInTableView, return: \(dataSource.count)")
+        
+        setMainHeaderValues()
+        setBackground()
+        
         return dataSource.count
     }
     
@@ -145,6 +180,8 @@ class StoreOffersTableViewController: UITableViewController {
         //println("numberOfRowsInSection \(section), return: \(returnObject)")
         return returnObject
     }
+    
+    
     
     // ## Cells ##
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -196,9 +233,13 @@ class StoreOffersTableViewController: UITableViewController {
     }
     
     
+    
     // ## Header ##
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCellWithIdentifier("shoppingHeader") as! ShoppingTableViewHeaderCell
+        
+        // Increment headerCount
+        headerCount++
         
         // Clear up startup background
         headerCell.textLabel?.backgroundColor = UIColor.clearColor()
@@ -206,28 +247,36 @@ class StoreOffersTableViewController: UITableViewController {
         // Add covering background color
         headerCell.backgroundColor = UIColorFromHex(0x22b8a3, alpha: 1) //UIColor(white: 0.85, alpha: 1)
         
-        // Add store image
-        // print(dataSource[sortedStores[section]]["meta_data"]["logo"])
         let url = NSURL(string: dataSource[sortedStores[section]]["meta_data"]["logo"].string!)
         let data = NSData(contentsOfURL: url!)
-        if data != nil {
+        if data != nil { // Add store image
             let image = UIImage(data: data!)
-            headerCell.imageView?.image = imageResize(image: image!, cellWidth: 45, cellHeight: 45)
+            headerCell.imageView?.image = imageResize(image: image!, cellWidth: 90, cellHeight: 30)
+        } else { // Add store name label
+            headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"].string
+            headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+            headerCell.textLabel?.textColor = UIColor.whiteColor()
         }
         
         // Add store name label
+        /*
         headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"].string
         headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-        headerCell.textLabel?.textColor = UIColor.whiteColor()
+        headerCell.textLabel?.textColor = UIColorFromHex(0xf3bd19, alpha: 1)
+        */
         
         // Add right hand side details
         let address = dataSource[sortedStores[section]]["meta_data"]["street"].string
-        let postalCode = dataSource[sortedStores[section]]["meta_data"]["zip_code"].string
+        let distanceMeasure = dataSource[sortedStores[section]]["meta_data"]["distance"].int!
         let numberOfOffers = dataSource[sortedStores[section]]["offers"].count
         
         headerCell.rightLabel0.text = address
-        headerCell.rightLabel1.text = postalCode
-        headerCell.rightLabel2.text = "\(numberOfOffers) offers available"
+        headerCell.rightLabel1.text = "\(distanceMeasure) m away"
+        if numberOfOffers == 1 {
+            headerCell.rightLabel2.text = "1 offer available"
+        } else {
+            headerCell.rightLabel2.text = "\(numberOfOffers) offers available"
+        }
         
         headerCell.rightLabel0.textColor = UIColor.whiteColor()
         headerCell.rightLabel1.textColor = UIColor.whiteColor()
@@ -245,7 +294,7 @@ class StoreOffersTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerCell = tableView.dequeueReusableCellWithIdentifier("shoppingFooter") as! UITableViewCell
         
-        footerCell.backgroundColor = UIColor.clearColor()
+        footerCell.backgroundColor = UIColor.blackColor()
         
         return footerCell
     }
