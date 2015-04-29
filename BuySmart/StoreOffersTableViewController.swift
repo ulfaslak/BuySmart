@@ -13,7 +13,7 @@ var dataSource: JSON = []
 var sortedStores = [Int]()
 var theMaster = [NSDictionary]()
 var headerCount = 0
-var sliderPosition = FloatingPointType(1000)
+var sliderPosition = Float(1000)
 
 class StoreOffersTableViewController: UITableViewController {
     
@@ -133,6 +133,7 @@ class StoreOffersTableViewController: UITableViewController {
                 theMaster = NSUserDefaults.standardUserDefaults().objectForKey("dataSource") as! [NSDictionary]
                 dataSource = JSON(theMaster)
                 sortedStores = NSUserDefaults.standardUserDefaults().objectForKey("sortedStores") as! [Int]
+                sliderPosition = NSUserDefaults.standardUserDefaults().objectForKey("sliderPosition") as! Float
                 println(dataSource.count)
                 
                 self.tableView.reloadData()
@@ -257,13 +258,6 @@ class StoreOffersTableViewController: UITableViewController {
             headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             headerCell.textLabel?.textColor = UIColor.whiteColor()
         }
-        
-        // Add store name label
-        /*
-        headerCell.textLabel?.text = dataSource[sortedStores[section]]["meta_data"]["nameStore"].string
-        headerCell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-        headerCell.textLabel?.textColor = UIColorFromHex(0xf3bd19, alpha: 1)
-        */
         
         // Add right hand side details
         let address = dataSource[sortedStores[section]]["meta_data"]["street"].string

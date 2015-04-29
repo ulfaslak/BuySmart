@@ -107,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         NSUserDefaults.standardUserDefaults().setObject(shoppingListHistory, forKey: "shoppingListHistory")
         NSUserDefaults.standardUserDefaults().setObject(theMaster, forKey: "dataSource")
         NSUserDefaults.standardUserDefaults().setObject(sortedStores, forKey: "sortedStores")
+        NSUserDefaults.standardUserDefaults().setObject(sliderPosition, forKey: "sliderPosition")
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
