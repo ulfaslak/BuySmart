@@ -14,6 +14,10 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet var headingLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
+    @IBAction func Addbutton(sender: AnyObject) {
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -81,8 +81,8 @@ class ShoppingListTableViewController: UITableViewController, UITextFieldDelegat
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         
-        self.title = "Watchlist"
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "noteblock-02"))
+        self.title = "Shopping List"
+        //self.navigationItem.titleView = UIImageView(image: UIImage(named: "noteblock-02"))
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         
         /*

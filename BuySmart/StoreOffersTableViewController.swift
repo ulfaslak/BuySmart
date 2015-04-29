@@ -140,6 +140,9 @@ class StoreOffersTableViewController: UITableViewController {
             }
         }
         
+        //Set navigation bar
+        self.navigationItem.title = "Offers"
+        
         // Set store count label
         setMainHeaderValues()
         
@@ -288,7 +291,7 @@ class StoreOffersTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerCell = tableView.dequeueReusableCellWithIdentifier("shoppingFooter") as! UITableViewCell
         
-        footerCell.backgroundColor = UIColor.blackColor()
+        footerCell.backgroundColor = UIColor.clearColor()
         
         return footerCell
     }
