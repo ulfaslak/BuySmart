@@ -15,12 +15,233 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InteractionView-02" translatesAutoresizingMaskIntoConstraints="NO" id="MEj-LM-VIb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-6z-E1J">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Habits" id="wNE-yL-xjs">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="XHN-c9-JRD">
+                                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="CBj-SM-kmW" kind="presentation" modalTransitionStyle="flipHorizontal" id="RQQ-lp-Jj6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g78-Wm-BSd">
+                                <rect key="frame" x="157" y="104" width="102" height="195"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="iIt-Vp-FHG" kind="presentation" modalTransitionStyle="crossDissolve" id="kbg-pG-G3I"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-rL-cHy">
+                                <rect key="frame" x="56" y="346" width="102" height="177"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ieC-fW-ERh" kind="presentation" modalTransitionStyle="crossDissolve" id="Q6Q-fV-mfd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="37" y="-50"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g6H-zE-PP5">
+            <objects>
+                <viewController id="ieC-fW-ERh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h2H-cV-dI7"/>
+                        <viewControllerLayoutGuide type="bottom" id="SYa-4A-WUK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="upF-vM-x0K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InteractionView-03" translatesAutoresizingMaskIntoConstraints="NO" id="fna-cJ-qT6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Meu-8w-tHq">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Habits" id="F3t-ZK-D8N">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="7FO-Xi-5X0">
+                                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="tOO-TI-OZH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-Zn-yZM">
+                                <rect key="frame" x="30" y="123" width="260" height="63"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xVb-gM-j05" kind="presentation" modalTransitionStyle="crossDissolve" animates="NO" id="ZZ7-Jf-gj0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91B-vZ-bTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="492" y="282"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GfN-x0-lci">
+            <objects>
+                <viewController id="xVb-gM-j05" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Vm-n7-Z7M"/>
+                        <viewControllerLayoutGuide type="bottom" id="qr1-de-PwB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4cW-99-Wwj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InteractionView-05" translatesAutoresizingMaskIntoConstraints="NO" id="87t-Ru-zng">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4uC-Do-Uu7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Habits" id="grz-Rw-6bG">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="urU-kT-5rE">
+                                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="bxU-77-hvP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muU-bE-72X">
+                                <rect key="frame" x="29" y="123" width="260" height="63"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ieC-fW-ERh" kind="presentation" modalTransitionStyle="crossDissolve" animates="NO" id="syS-YV-wtI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D0v-nJ-SQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="855" y="282"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8l3-Xi-dBR">
+            <objects>
+                <viewController id="iIt-Vp-FHG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fyi-WA-Idl"/>
+                        <viewControllerLayoutGuide type="bottom" id="k8a-xh-BeN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fEK-77-vbK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InteractionView-01" translatesAutoresizingMaskIntoConstraints="NO" id="7dQ-Wz-XWE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3DN-0x-QUg">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Habits" id="PGh-Lr-yBo">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Cqq-kt-iTU">
+                                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="GbP-K7-uki"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opy-ng-va3">
+                                <rect key="frame" x="28" y="122" width="260" height="63"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ctn-aU-2Lw" kind="presentation" modalTransitionStyle="crossDissolve" animates="NO" id="DaQ-iu-f6H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bR9-di-zAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="492" y="-430"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="q1g-Ig-5ay">
+            <objects>
+                <viewController id="ctn-aU-2Lw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aDs-Nr-Utp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Euc-0L-RGZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yjq-fg-g7d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InteractionView-04" translatesAutoresizingMaskIntoConstraints="NO" id="eYg-L8-Zlu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bjx-D4-xoK">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Habits" id="4yh-Lp-ND3">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Vrs-MK-onN">
+                                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="aXc-Wl-cjU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0T-MO-51p">
+                                <rect key="frame" x="31" y="121" width="254" height="68"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="iIt-Vp-FHG" kind="presentation" modalTransitionStyle="crossDissolve" animates="NO" id="djr-ll-0nU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FgZ-YL-nFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="855" y="-430"/>
         </scene>
         <!--Shopping List Table View Controller-->
         <scene sceneID="hxd-A0-CrD">
@@ -56,6 +277,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="l9D-d3-rab">
+                        <barButtonItem key="leftBarButtonItem" image="pie-chart5" id="Pxi-dZ-UCu">
+                            <color key="tintColor" red="0.1333333333" green="0.72156862749999995" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="flipHorizontal" id="tui-I7-tnN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="hjC-Mw-Rx9">
                             <color key="tintColor" red="0.25490196079999999" green="0.6588235294" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -227,4 +454,17 @@
             <point key="canvasLocation" x="393" y="1204"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="InteractionView-01" width="2667" height="4733"/>
+        <image name="InteractionView-02" width="2667" height="4733"/>
+        <image name="InteractionView-03" width="2667" height="4733"/>
+        <image name="InteractionView-04" width="2667" height="4733"/>
+        <image name="InteractionView-05" width="2667" height="4733"/>
+        <image name="pie-chart5" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="djr-ll-0nU"/>
+        <segue reference="GbP-K7-uki"/>
+        <segue reference="syS-YV-wtI"/>
+    </inferredMetricsTieBreakers>
 </document>
