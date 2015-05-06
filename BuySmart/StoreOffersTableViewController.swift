@@ -66,8 +66,8 @@ class StoreOffersTableViewController: UITableViewController {
         
         var radius = Int(radiusSliderOutlet.value)
         print(radius)
-        var currentLat = 55.706683 //locationManager.location.coordinate.latitude
-        var currentLng = 12.542986 //locationManager.location.coordinate.longitude
+        var currentLat = locationManager.location.coordinate.latitude //55.706683 //
+        var currentLng = locationManager.location.coordinate.longitude //12.542986 //
         
         println(currentLat)
         println(currentLng)
