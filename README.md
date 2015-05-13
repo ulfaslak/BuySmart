@@ -8,4 +8,8 @@ The easiest way to install the eTilbudsavis SDK is by using CocoaPods.
 As the podfile is already created, just run pod install in your project directory.
 This will add the ETA SDK to your project, and manage all the dependencies.
 
+If there are problems with the bridging header file, look at this:
+
+http://stackoverflow.com/questions/24002369/how-to-call-objective-c-code-from-swift
+
 See the documentation on the CocoaPods website if you are new to them.
